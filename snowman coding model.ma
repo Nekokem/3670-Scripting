@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: snowman coding model.ma
-//Last modified: Fri, Aug 28, 2020 02:44:23 PM
+//Last modified: Fri, Aug 28, 2020 02:51:22 PM
 //Codeset: UTF-8
 requires maya "2020";
 requires "mtoa" "4.0.0";
@@ -10,18 +10,18 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Mac OS X 10.15.6";
-fileInfo "UUID" "52CBCE20-5F4B-406A-2C2E-C58543751B72";
+fileInfo "UUID" "998F35AE-9347-1845-782E-61A31A2370C3";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "8CD69010-9246-57BB-4724-CB92122BF9CB";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -26.462901148883972 7.336026571614668 0.83163017085550184 ;
-	setAttr ".r" -type "double3" -1.5383527295322492 -88.199999999989828 3.1642767227609485e-15 ;
+	setAttr ".t" -type "double3" -26.19885184981834 16.399094361518774 -4.9029818501860527 ;
+	setAttr ".r" -type "double3" -20.13835272953046 -100.5999999999914 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "D727E14E-1640-67AB-7E8A-FF8A9EC9819C";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 26.485511353385476;
+	setAttr ".coi" 28.389295604883866;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
