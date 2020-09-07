@@ -1,0 +1,86 @@
+{    
+
+string $balloonParts[] = {};
+string $tempBalloonParts[] = {};
+//Balloon Body
+$tempBalloonParts = `polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+$tempBalloonParts[0] = `rename $tempBalloonParts[0] "BalloonBody"`;
+move -r -os -wd 0 8.812666 0 ;
+select -r BalloonBody.vtx[0:179] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.143253 0 ;
+select -cl;
+select -r BalloonBody.vtx[0:159] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.198351 0 ;
+select -cl  ;
+select -r BalloonBody.vtx[0:139] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.165292 0 ;
+select -cl  ;
+select -r BalloonBody.vtx[0:119] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.132234 0 ;
+select -cl  ;
+select -r BalloonBody.vtx[0:99] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.143253 0 ;
+select -cl  ;
+select -r BalloonBody.vtx[0:79] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.143253 0 ;
+select -cl  ;
+select -r BalloonBody.vtx[0:59] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.0771364 0 ;
+select -cl  ;
+select -r BalloonBody.vtx[0:39] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.0661169 0 ;
+select -cl  ;
+select -r BalloonBody.vtx[0:19] BalloonBody.vtx[380] ;
+move -r -os -wd 0 -0.0433831 0 ;
+select -cl;
+dR_paintPress;
+selectPref -paintSelectRefine 1 -paintSelect 1;
+select -add BalloonBody.f[0:19] ;
+dR_paintRelease;
+selectPref -paintSelectRefine 0 -paintSelect 0;
+PolyExtrude;
+hilite BalloonBody.f[0:19] ;
+selectMode -component ;
+select -r BalloonBody.f[0:19] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx -2.980232239e-08 -pvy 6.752712668 -pvz -5.960464478e-08 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 BalloonBody.f[0:19];
+setAttr "polyExtrudeFace1.localTranslate" -type double3 0 0 0.179928 ;
+select -cl;
+select -add BalloonBody.e[20:39] ;
+scale -r -p -2.98023e-08cm 6.79272cm -5.96046e-08cm 0.733287 0.733287 0.733287 ;
+select -cl;
+select -add BalloonBody.e[765] BalloonBody.e[769] BalloonBody.e[773] BalloonBody.e[777] BalloonBody.e[781] BalloonBody.e[785] BalloonBody.e[789] BalloonBody.e[793] BalloonBody.e[797] BalloonBody.e[801] BalloonBody.e[805] BalloonBody.e[809] BalloonBody.e[813] BalloonBody.e[817] BalloonBody.e[821] BalloonBody.e[825] BalloonBody.e[829] BalloonBody.e[833] BalloonBody.e[837] BalloonBody.e[839] ;
+scale -r -p -2.98023e-08cm 6.633802cm -1.93715e-07cm 0.796185 0.796185 0.796185 ;
+select -cl;
+select -add BalloonBody.e[846] BalloonBody.e[852] BalloonBody.e[857] BalloonBody.e[862] BalloonBody.e[867] BalloonBody.e[872] BalloonBody.e[877] BalloonBody.e[882] BalloonBody.e[887] BalloonBody.e[892] BalloonBody.e[897] BalloonBody.e[902] BalloonBody.e[907] BalloonBody.e[912] BalloonBody.e[917] BalloonBody.e[922] BalloonBody.e[927] BalloonBody.e[932] BalloonBody.e[937] BalloonBody.e[939] ;
+scale -r -p -2.98023e-08cm 6.633802cm -1.93715e-07cm 0.679719 0.679719 0.679719 ;
+select -cl;
+select -add BalloonBody.e[762] BalloonBody.e[767] BalloonBody.e[771] BalloonBody.e[775] BalloonBody.e[779] BalloonBody.e[783] BalloonBody.e[787] BalloonBody.e[791] BalloonBody.e[795] BalloonBody.e[799] BalloonBody.e[803] BalloonBody.e[807] BalloonBody.e[811] BalloonBody.e[815] BalloonBody.e[819] BalloonBody.e[823] BalloonBody.e[827] BalloonBody.e[831] BalloonBody.e[835] BalloonBody.e[838] ;
+move -r -os -wd 0 0.172491 0 ;
+select -cl;
+select -add BalloonBody.e[842] BalloonBody.e[849] BalloonBody.e[854] BalloonBody.e[859] BalloonBody.e[864] BalloonBody.e[869] BalloonBody.e[874] BalloonBody.e[879] BalloonBody.e[884] BalloonBody.e[889] BalloonBody.e[894] BalloonBody.e[899] BalloonBody.e[904] BalloonBody.e[909] BalloonBody.e[914] BalloonBody.e[919] BalloonBody.e[924] BalloonBody.e[929] BalloonBody.e[934] BalloonBody.e[938] ;
+move -r -os -wd 0 0.125667 0 ;
+select -cl;
+select -r BalloonBody.f[0:19] BalloonBody.f[360:379] BalloonBody.f[400:479] ;
+scale -r -p 0cm 6.713261cm -1.93715e-07cm 0.448758 0.448758 0.448758 ;
+select -cl;
+$balloonParts[size($balloonParts)] = $tempBalloonParts[0];
+//BalloonString
+$tempBalloonParts = `polyCylinder -r .25 -h 20 -sx 20 -sy 5 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1`;
+$tempBalloonParts[0] = `rename $tempBalloonParts[0] "BalloonString"`;
+scale -r 0.227 0.227 0.227 ;
+move -r -os -wd 0 4.757 0 ;
+$balloonParts[size($balloonParts)] = $tempBalloonParts[0];
+
+polyUnite $balloonParts;
+rename "polySurface1" "BalloonGeo";
+
+group -empty -name "Geometry";
+
+if(objExists("Geometry"))
+{
+    select -r BalloonGeo Geometry;
+    parent;
+}
+
+
+}
