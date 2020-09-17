@@ -1,0 +1,49 @@
+{
+
+
+proc float AddValue(float $num1, float $num2)
+{
+       
+       float $sum = $num1 + $num2;
+       return $sum;
+
+}
+
+AddValue(3.0,8.5);
+
+
+
+proc float SubValue(float $num1, float $num2)
+{
+
+       float $sum = $num1 - $num2;
+       return $sum;
+
+}
+
+SubValue(197,41);
+
+
+proc float MultValue(float $num1, float $num2)
+{
+
+       float $sum = $num1 * $num2;
+       return $sum;
+
+}
+
+MultValue(28,5);
+
+
+
+proc float DivideValue(float $num1, float $num2)
+{
+
+       float $sum = $num1 / $num2;
+       return $sum;
+
+}
+
+DivideValue(12,3);
+
+}
