@@ -82,5 +82,7 @@ if(objExists("Geometry"))
     parent;
 }
 
+DeleteHistory;
+delete -ch;
 
 }
