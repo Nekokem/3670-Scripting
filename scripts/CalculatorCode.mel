@@ -1,49 +1,84 @@
 {
 
 
-proc float AddValue(float $num1, float $num2)
+proc float AddValue(float $num[])
 {
        
-       float $sum = $num1 + $num2;
+       float $sum = $num[0];
+       for($i=0; $i<size($num); $i++)
+       {
+           $sum += $num[$i];
+       }
        return $sum;
-
 }
+float $numberAdd = AddValue ({10,4});
+print $numberAdd;
 
-AddValue(3.0,8.5);
 
-
-
-proc float SubValue(float $num1, float $num2)
+proc float SubValue(float $num[])
 {
-
-       float $sum = $num1 - $num2;
+       
+       float $sum = $num[0];
+       for($i=1; $i<size($num); $i++)
+       {
+           $sum -= $num[$i];
+       }
        return $sum;
-
 }
+float $numberSub = SubValue ({10,7});
+print $numberSub;
 
-SubValue(197,41);
 
-
-proc float MultValue(float $num1, float $num2)
+proc float MultValue(float $num[])
 {
-
-       float $sum = $num1 * $num2;
+       
+       float $sum = $num[0];
+       for($i=0; $i<size($num); $i++)
+       {
+           $sum *= $num[$i];
+       }
        return $sum;
-
 }
+float $numberMult = MultValue ({4,8});
+print $numberMult;
 
-MultValue(28,5);
 
-
-
-proc float DivideValue(float $num1, float $num2)
+proc float DivValue(float $num[])
 {
+       
+       float $result = $num[0];
+       for($i=1; $i<size($num); $i++)
+       {
+           $result /= $num[$i];
+       }
+       
+       return $result;
+}
+float $numberDiv2 = DivValue ({18,2});
+print $numberDiv2;
 
-       float $sum = $num1 / $num2;
-       return $sum;
+proc float ModValue(float $num[])
+{
+       
+       float $result = $num[0];
+       for($i=1; $i<size($num); $i++)
+       {
+           $result %= $num[$i];
+       }
+       
+       return $result;
+}
+float $numberMod = DivValue ({18,2});
+print $numberMod;
+
+proc float AverageNum(float $num[])
+{
+    float $result = AddValue($num[]);
+    return $result / size($num);
 
 }
 
-DivideValue(12,3);
+float $numberAve = AverageNum {(5,7,3,2,5,6)};
+print $numberAve;
 
 }
