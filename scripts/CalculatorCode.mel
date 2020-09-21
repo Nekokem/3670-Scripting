@@ -1,6 +1,6 @@
 {
 
-/*global proc float[] SortList(float $list[])
+global proc float[] SortList(float $list[])
 {
     float $len = `size($list)`;
     float $temp = 0;
@@ -8,51 +8,22 @@
     int $i;
     for($i=0;$i<$len-1;$i++)
     {
-        for($x=0;$x<$len-1;$x++)
+       
+        for($x=0;$x<$len-$i-1;$x++)
         {
-            if($list[$x]<$list[$x+1])
+            if($list[$x]>$list[$x+1])
             {
+                
                 $temp = $list[$x];
                 $list[$x] = $list[$x+1];
                 $list[$x+1] = $temp;
             }
         }
+      
         
     }
-    print "sorted value";
-    print $list;
     return $list;
-}*/
-
-global proc float[] SortList(float $list[])
- {
- 	int $i;
- 	int $j;
- 	float $temp;
- 	int $flag;
- 	int $n = `size($list)`;
- 
- 	for($i=$n-1; $i>0; $i--)
- 	{
- 		$flag = 1;
- 		for($j=0; $i>$j; $j++)
- 		{
- 			if($list[$j]>$list[$j+1])
- 			{
- 				$flag = 0;
- 				$temp = $list[$j];
- 				$list[$j] = $list[$j+1];
- 				$list[$j+1] = $temp;
- 			}
- 		}
- 		if($flag) {
- 			break;
- 		}
- 	}
- 	
- 	return $list;
- }
-
+}
 
 proc float AddValue(float $num[])
 {
@@ -94,6 +65,30 @@ proc float MultValue(float $num[])
 }
 float $numberMult = MultValue ({4,8});
 print $numberMult;
+global proc float[] SortList(float $list[])
+{
+    float $len = `size($list)`;
+    float $temp = 0;
+    int $x;
+    int $i;
+    for($i=0;$i<$len-1;$i++)
+    {
+       
+        for($x=0;$x<$len-$i-1;$x++)
+        {
+            if($list[$x]>$list[$x+1])
+            {
+                
+                $temp = $list[$x];
+                $list[$x] = $list[$x+1];
+                $list[$x+1] = $temp;
+            }
+        }
+      
+        
+    }
+    return $list;
+}
 
 
 proc float DivValue(float $num[])
@@ -144,18 +139,46 @@ print $numberPower;
 
 proc float Mode(float $num[])
 {
-       
+    
+    float $sorted[] = SortList($num);
+    float $number = $sorted[0];
+    float $mode = $number;
+    int $len = `size($sorted)`;
+    int $count = 1;
+    int $countMode = 1;
+
+    for ($i=1; $i<$len; $i++)
+    {
+          if ($sorted[$i] == $number) 
+          { 
+             ++$count;
+          }
+          else
+          { 
+                if ($count > $countMode) 
+                {
+                      $countMode = $count; 
+                }
+               $count = 1; 
+               $number = $sorted[$i];
+          }
+    } 
+  return $mode;
 }
-float $numberMode = Mode({10,4});
+float $numberMode = Mode({10,4,5,6,8,8,9,2});
 print $numberMode;
 
 
 proc float Median(float $num[])
 {
-    print $num;
-    float $num2[] = SortList($num);
-    print $num2;
-    return 0;
+    float $sorted[] = SortList($num);
+    int $len = `size($sorted)`;
+    if (($len % 2) != 0)
+    { 
+       return $sorted[$len/2]; 
+    }  
+    return ($sorted[($len-1)/2] + $sorted[$len/2])/2.0;
+    
 }
 float $numberMed2 = Median ({10,4,3});
 print $numberMed2;
