@@ -1,5 +1,58 @@
 {
 
+/*global proc float[] SortList(float $list[])
+{
+    float $len = `size($list)`;
+    float $temp = 0;
+    int $x;
+    int $i;
+    for($i=0;$i<$len-1;$i++)
+    {
+        for($x=0;$x<$len-1;$x++)
+        {
+            if($list[$x]<$list[$x+1])
+            {
+                $temp = $list[$x];
+                $list[$x] = $list[$x+1];
+                $list[$x+1] = $temp;
+            }
+        }
+        
+    }
+    print "sorted value";
+    print $list;
+    return $list;
+}*/
+
+global proc float[] SortList(float $list[])
+ {
+ 	int $i;
+ 	int $j;
+ 	float $temp;
+ 	int $flag;
+ 	int $n = `size($list)`;
+ 
+ 	for($i=$n-1; $i>0; $i--)
+ 	{
+ 		$flag = 1;
+ 		for($j=0; $i>$j; $j++)
+ 		{
+ 			if($list[$j]>$list[$j+1])
+ 			{
+ 				$flag = 0;
+ 				$temp = $list[$j];
+ 				$list[$j] = $list[$j+1];
+ 				$list[$j+1] = $temp;
+ 			}
+ 		}
+ 		if($flag) {
+ 			break;
+ 		}
+ 	}
+ 	
+ 	return $list;
+ }
+
 
 proc float AddValue(float $num[])
 {
@@ -57,28 +110,56 @@ proc float DivValue(float $num[])
 float $numberDiv2 = DivValue ({18,2});
 print $numberDiv2;
 
-proc float ModValue(float $num[])
-{
-       
-       float $result = $num[0];
-       for($i=1; $i<size($num); $i++)
-       {
-           $result %= $num[$i];
-       }
-       
-       return $result;
+proc float ModValue(float $dividend, float $divisor)
+{       
+       return $dividend % $divisor;
 }
-float $numberMod = DivValue ({18,2});
-print $numberMod;
+float $numberMod3 = ModValue (10,3);
+print $numberMod3;
 
 proc float AverageNum(float $num[])
 {
-    float $result = AddValue($num[]);
+    float $result = AddValue($num);
     return $result / size($num);
 
 }
 
-float $numberAve = AverageNum {(5,7,3,2,5,6)};
+float $numberAve = AverageNum ({5,7,3,2,5,6});
 print $numberAve;
+
+
+proc float Power(float $base, float $numPower)
+{
+   float $result = 1;  
+   for($i=0; $i<$numPower; $i++)
+   {
+       $result *= $base;
+       
+   }
+   return $result;
+
+}
+float $numberPower = Power (10,3);
+print $numberPower;
+
+proc float Mode(float $num[])
+{
+       
+}
+float $numberMode = Mode({10,4});
+print $numberMode;
+
+
+proc float Median(float $num[])
+{
+    print $num;
+    float $num2[] = SortList($num);
+    print $num2;
+    return 0;
+}
+float $numberMed2 = Median ({10,4,3});
+print $numberMed2;
+
+
 
 }
