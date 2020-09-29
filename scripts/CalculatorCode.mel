@@ -28,10 +28,21 @@ proc float AddValue(float $num[])
 {
        
        float $sum = $num[0];
+       string $equation = "";
        for($i=0; $i<size($num); $i++)
        {
            $sum += $num[$i];
+           
+           if($equation == "")
+           {
+               $equation = $num[$i];
+           }
+           else
+           {
+                   
+           }
        }
+       
        return $sum;
 }
 float $numberAdd = AddValue ({10,4});
