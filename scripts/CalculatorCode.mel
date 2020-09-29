@@ -1,5 +1,4 @@
 {
-
 global proc float[] SortList(float $list[])
 {
     float $len = `size($list)`;
@@ -192,6 +191,53 @@ proc float Median(float $num[])
 float $numberMed2 = Median ({10,4,3});
 print $numberMed2;
 
-
+global proc float calculator(float $numbs[], string $operation)
+{
+    float result;
+    if($operation == "add")
+    {
+        result = `AddValue($numbs)`;
+    }
+    else if($operation == "subtract")
+    {
+        result = `SubValue($numbs)`;
+    }
+    else if($operation == "multiply")
+    {
+        result = `MultValue($numbs)`;
+    }
+    else if($operation == "divide")
+    {
+        result = `DivValue($numbs)`;
+    }
+    else if($operation == "divide")
+    {
+        result = `DivValue($numbs)`;
+    }
+    else if($operation == "module")
+    {
+        result = `ModValue($numbs)`;
+    }
+    else if($operation == "avgerage")
+    {
+        result = `AverageNum($numbs)`;
+    }
+    else if($operation == "exponent")
+    {
+        result = `Power($numbs)`;
+    }
+    else if($operation == "mode")
+    {
+        result = `Mode($numbs)`;
+    }
+    else if($operation == "median")
+    {
+        result = `Median($numbs)`;
+    }
+    
+    return result;
+    
+    
+}
 
 }
