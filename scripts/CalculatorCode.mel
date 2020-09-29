@@ -26,10 +26,9 @@ global proc float[] SortList(float $list[])
 
 proc float AddValue(float $num[])
 {
-       
        float $sum = $num[0];
        string $equation = "";
-       for($i=0; $i<size($num); $i++)
+       for($i=1; $i<size($num); $i++)
        {
            $sum += $num[$i];
            
@@ -39,67 +38,75 @@ proc float AddValue(float $num[])
            }
            else
            {
-                   
+               $equation = $equation + " + " + $num[$i];        
            }
        }
+       
+       $equation = $equation + " = " + $sum;
+       print ($num[0] + " + ");
+       print ($equation);
        
        return $sum;
 }
 float $numberAdd = AddValue ({10,4});
-print $numberAdd;
 
 
 proc float SubValue(float $num[])
 {
        
-       float $sum = $num[0];
+       float $result = $num[0];
+       string $equation = "";
+
        for($i=1; $i<size($num); $i++)
        {
-           $sum -= $num[$i];
+           $result -= $num[$i];
+           if($equation == "")
+           {
+               $equation = $num[$i];
+           }
+           else
+           {
+               $equation = $equation + " - " + $num[$i];        
+           }
        }
-       return $sum;
+       
+       $equation = $equation + " = " + $result;
+       print ($num[0] + " - ");
+       print ($equation);
+       
+       return $result;
 }
-float $numberSub = SubValue ({10,7});
-print $numberSub;
+float $numberSub = SubValue ({10,7,2});
+
 
 
 proc float MultValue(float $num[])
 {
        
-       float $sum = $num[0];
-       for($i=0; $i<size($num); $i++)
-       {
-           $sum *= $num[$i];
-       }
-       return $sum;
-}
-float $numberMult = MultValue ({4,8});
-print $numberMult;
-global proc float[] SortList(float $list[])
-{
-    float $len = `size($list)`;
-    float $temp = 0;
-    int $x;
-    int $i;
-    for($i=0;$i<$len-1;$i++)
-    {
-       
-        for($x=0;$x<$len-$i-1;$x++)
-        {
-            if($list[$x]>$list[$x+1])
-            {
-                
-                $temp = $list[$x];
-                $list[$x] = $list[$x+1];
-                $list[$x+1] = $temp;
-            }
-        }
-      
-        
-    }
-    return $list;
-}
+       float $result = $num[0];
+       string $equation = "";
 
+       for($i=1; $i<size($num); $i++)
+       {
+           $result *= $num[$i];
+           if($equation == "")
+           {
+               $equation = $num[$i];
+           }
+           else
+           {
+               $equation = $equation + " * " + $num[$i];        
+           }
+       }
+       
+       $equation = $equation + " = " + $result;
+       print ($num[0] + " * ");
+       print ($equation);
+           
+       
+       return $result;
+}
+float $numberMult = MultValue ({4,8,9});
 
 proc float DivValue(float $num[])
 {
