@@ -1,4 +1,5 @@
 {
+//Sort
 global proc float[] SortList(float $list[])
 {
     float $len = `size($list)`;
@@ -24,6 +25,7 @@ global proc float[] SortList(float $list[])
     return $list;
 }
 
+//Add
 proc float AddValue(float $num[])
 {
        float $sum = $num[0];
@@ -48,9 +50,9 @@ proc float AddValue(float $num[])
        
        return $sum;
 }
-float $numberAdd = AddValue ({10,4});
 
 
+//Sub
 proc float SubValue(float $num[])
 {
        
@@ -76,10 +78,9 @@ proc float SubValue(float $num[])
        
        return $result;
 }
-float $numberSub = SubValue ({10,7,2});
 
 
-
+//Mult
 proc float MultValue(float $num[])
 {
        
@@ -106,23 +107,35 @@ proc float MultValue(float $num[])
        
        return $result;
 }
-float $numberMult = MultValue ({4,8,9});
 
+//Divd
 proc float DivValue(float $num[])
 {
        
    float $result = $num[0];
-   
+   string $equation = "";
+
        for($i=1; $i<size($num); $i++)
        {
            $result /= $num[$i];
+           if($equation == "")
+           {
+               $equation = $num[$i];
+           }
+           else
+           {
+               $equation = $equation + " / " + $num[$i];        
+           }
        }
+       
+       $equation = $equation + " = " + $result;
+       print ($num[0] + " / ");
+       print ($equation);
        
        return $result;
 }
-float $numberDiv2 = DivValue ({18,2});
-print $numberDiv2;
 
+//Mod
 proc float ModValue(float $dividend, float $divisor)
 {       
        return $dividend % $divisor;
@@ -130,17 +143,26 @@ proc float ModValue(float $dividend, float $divisor)
 float $numberMod3 = ModValue (10,3);
 print $numberMod3;
 
+//Average
 proc float AverageNum(float $num[])
 {
+    
     float $result = AddValue($num);
-    return $result / size($num);
+    float $aver = $result / size($num);
+    
+    /*print "the average of ";
+    
+    for($i=1; $i<size($num); $i++)
+    {
+        print (num($i) + " , ");
+    }
+     print ("is " + $aver);*/
+     return $aver;
 
 }
-
 float $numberAve = AverageNum ({5,7,3,2,5,6});
-print $numberAve;
 
-
+//Power
 proc float Power(float $base, float $numPower)
 {
    float $result = 1;  
@@ -149,12 +171,14 @@ proc float Power(float $base, float $numPower)
        $result *= $base;
        
    }
+   
    return $result;
 
 }
 float $numberPower = Power (10,3);
-print $numberPower;
 
+
+//Mode
 proc float Mode(float $num[])
 { 
     int $repitition[];
@@ -194,7 +218,7 @@ proc float Mode(float $num[])
 float $numberMode = Mode({10,4,5,6,8,6,9,2,6,2,2});
 print $numberMode;
 
-
+//Median
 proc float Median(float $num[])
 {
     float $sorted[] = SortList($num);
@@ -203,59 +227,70 @@ proc float Median(float $num[])
     { 
        return $sorted[$len/2]; 
     }  
+       
+   /* print "The Median of";
+       for($i=0; $i<size($sorted); $i++)
+       {
+           print ($num[$i] + ", ");
+       }
+    print ("is" + $sorted);*/
+    
     return ($sorted[($len-1)/2] + $sorted[$len/2])/2.0;
     
 }
 float $numberMed2 = Median ({10,4,3});
-print $numberMed2;
 
+
+//Calc
 global proc float calculator(float $numbs[], string $operation)
 {
-    float result;
+    float $result;
     if($operation == "add")
     {
-        result = `AddValue($numbs)`;
+        $result = `AddValue($numbs)`;
+        return $result;
     }
     else if($operation == "subtract")
     {
-        result = `SubValue($numbs)`;
+        $result = `SubValue($numbs)`;
+        return $result;
+
     }
     else if($operation == "multiply")
     {
-        result = `MultValue($numbs)`;
+        $result = `MultValue($numbs)`;
+        return $result;
+
     }
     else if($operation == "divide")
     {
-        result = `DivValue($numbs)`;
-    }
-    else if($operation == "divide")
-    {
-        result = `DivValue($numbs)`;
-    }
-    else if($operation == "module")
-    {
-        result = `ModValue($numbs)`;
+        $result = `DivValue($numbs)`;
+        return $result;
+        
     }
     else if($operation == "avgerage")
     {
-        result = `AverageNum($numbs)`;
-    }
-    else if($operation == "exponent")
-    {
-        result = `Power($numbs)`;
+        $result = `AverageNum($numbs)`;
+        return $result;
+        
     }
     else if($operation == "mode")
     {
-        result = `Mode($numbs)`;
+        $result = `Mode($numbs)`;
+        return $result;
+        
     }
     else if($operation == "median")
     {
-        result = `Median($numbs)`;
+        $result = `Median($numbs)`;
+        return $result;
+        
     }
-    
-    return result;
-    
-    
+    else
+    {
+        return 0;
+    }
 }
+calculator({4,6,7,8,3}, "add");
 
 }
