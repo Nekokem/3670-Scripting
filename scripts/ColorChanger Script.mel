@@ -1,0 +1,18 @@
+{
+    proc float[] ChangeColor(int $color, float $controls[])
+    {
+        $controls = `ls -sl`;
+        for($i=0; $i<size($controls); $i++)
+        {
+            
+            setAttr "$i.overrideEnabled" 1;
+            changeObjColor $controls[$i].overrideColor AttributeEditor($colors);    
+        
+        }
+        
+        
+        return $controls;
+        
+    }
+    
+}
