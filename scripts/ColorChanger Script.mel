@@ -1,18 +1,41 @@
 {
-    proc float[] ChangeColor(int $color, float $controls[])
+    proc ChangeColor(int $color)
     {
         $controls = `ls -sl`;
-        for($i=0; $i<size($controls); $i++)
+      
+        string $shapes[];
+        for($obj in $controls)
         {
-            
-            setAttr "$i.overrideEnabled" 1;
-            changeObjColor $controls[$i].overrideColor AttributeEditor($colors);    
-        
+            $relatives = `listRelatives - shapes $obj`;
+            for($rel in $relatives)
+            {
+                
+                $shapes[size($shapes)] = $rel;
+                
+            }
+                     
+                     if($color <= 0)
+                     {
+                         for($shape in $shapes)
+                         {
+                             setAttr ($shape + ".overrideEnabled") 0;
+                         }
+                         
+                     }    
+                         else
+                         {
+                             for($shape in $shapes)
+                             {
+                                 setAttr ($shape + ".overrideEnabled") 1;
+                                 setAttr ($shape + ".overrideColor") $color; 
+                             }
+                         }        
         }
         
-        
-        return $controls;
+        print "Colors have changed!";
         
     }
+    
+    ChangeColor(15);
     
 }
