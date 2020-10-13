@@ -1,0 +1,25 @@
+ proc RandomPlacement(int $num, float $maxX, float $minX, float $maxY, float $minY, float $maxZ, float $minZ)
+    {
+        //gathering the variables and array to place in variable
+        string $selection[] = {};
+        $selection =  `ls -sl`;
+        
+        for($obj in $selection)
+        {
+            for($i=0; $i<$num; $i++)
+            {
+                //duplicate
+                duplicate -rr;
+                float $randX = `rand $minX $maxX`;
+                float $randY = `rand $minY $maxY`;
+                float $randZ = `rand $minZ $maxZ`;
+                //transform
+                xform -ws -translation $randX $randY $randZ;
+                
+            }
+        }
+        
+        
+    }
+
+RandomPlacement(3,0,10,-5,10,-5,15);
