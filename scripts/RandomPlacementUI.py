@@ -8,8 +8,8 @@ class RandomPlacementUI():
     def create(self):
         self.delete()
         
-        self.RandomPlacement_Window = cmds.window(title = 'Renamer Window Settings', widthHeight=(500,500))
-        self.colLayout = cmds.columnLayout(parent=self.Renamer_Window, adjustableColumn=True )
+        self.RandomPlacement_Window = cmds.window(title = 'RandomePlacement Window Settings', widthHeight=(500,500))
+        self.colLayout = cmds.columnLayout(parent=self.RandomePlacement_Window, adjustableColumn=True )
         self.numDups = cmds.intField(parent=self.colLayout, placeholderText = 'Num of Dupicates')
         self.minX = cmds.intField(parent=self.colLayout, placeholderText = 'X Minimun')
         self.maxX = cmds.intField(parent=self.colLayout, placeholderText = 'X Maximun')
@@ -30,20 +30,21 @@ class RandomPlacementUI():
         
         sel = cmds.ls(selection=True)
         numberOfDups = cmds.intField(self.numDups, q=True, int=True)
-        minX = cmds.intField(self.minX, q=True, int=True)
-        maxX = cmds.intField(self.maxX, q=True, int=True)
-        minY = cmds.intField(self.minY, q=True, int=True)
-        maxY = cmds.intField(self.maxY, q=True, int=True)
-        maxZ = cmds.intField(self.maxZ, q=True, int=True)
+        min_X = cmds.intField(self.minX, q=True, int=True)
+        max_X = cmds.intField(self.maxX, q=True, int=True)
+        min_Y = cmds.intField(self.minY, q=True, int=True)
+        max_Y = cmds.intField(self.maxY, q=True, int=True)
+        min_Z = cmds.intField(self.maxZ, q=True, int=True)
+        max_Z = cmds.intField(self.maxZ, q=True, int=True)
     
         for obj in range(len(cmds.ls(selection=True))):
             index = obj
         
             for obj in range(numDuplicates):
                 tempObj = (cmds.duplicate(sel[index]), rr=True)
-                randomX = random.uniform(minX, maxX)
-                randomY = random.uniform(minY, maxY)
-                randomZ = random.uniform(minZ, maxZ)
+                randomX = random.uniform(min_X, max_X)
+                randomY = random.uniform(min_Y, max_Y)
+                randomZ = random.uniform(min_Z, max_Z)
             
                 cmds.select(tempObj)
                 cmds.xform(worldSpace=True, translation=[randomX, randomY, randomZ])  
@@ -51,4 +52,4 @@ class RandomPlacementUI():
 
 RandomPlacement_Window = RandomPlacementUI()
 
-RandomPlacement_Window.create()  
+RandomPlacement_Window.create()                                      
