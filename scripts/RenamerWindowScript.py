@@ -36,9 +36,4 @@ class RenamerUI():
             else:
                 print 'Not sequqntial! Figure out why!'
 
-            selectionNum += 1    
-
-
-Renamer_Window = RenamerUI()
-
-Renamer_Window.create()            
+            selectionNum += 1              
