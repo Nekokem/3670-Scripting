@@ -1,6 +1,6 @@
 import maya.cmds as cmds
 
-class RandomPlacementUI():
+class RandomPlaceUI():
     def __init__(self):
         self.RandomPlacement_Window = 'RandomPlacementWinderSetting'
             
@@ -55,8 +55,3 @@ class RandomPlacementUI():
 
                 cmds.select(tempObj)
                 cmds.xform(worldSpace=True, translation=[randomX, randomY, randomZ]) 
-
-
-RandomPlacement_Window = RandomPlacementUI()
-
-RandomPlacement_Window.create()                                      
